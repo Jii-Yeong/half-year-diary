@@ -13,7 +13,7 @@ public class MainApiController {
         User user = new User();
         user.setId("testId");
         user.setPassword("testPw");
-        user.setNickname("testNickname");
+        user.setNickname("nickname");
         return user;
     }
 }
