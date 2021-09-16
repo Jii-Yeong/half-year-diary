@@ -1,0 +1,93 @@
+.form-title {
+    width: 100%;
+    text-align: center;
+}
+
+.form-title h1 {
+    font-size: 2em;
+}
+
+.form-sign{
+    width: 100%;
+    max-width: 300px;
+    margin:30px 0px;
+}
+
+.form-sign input {
+    width: 100%;
+    height: 45px;
+    border:0;
+    background-color: #f1f1f1;
+    border-radius: 35px;
+    margin-bottom:20px;
+    padding:0px 15px;
+    box-sizing: border-box;
+}
+
+.form-sign input:focus {
+    border-color: #e08279;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgb(255 255 255 / 3%), 0 0 8px #e0817991;
+    box-shadow: inset 0 1px 1px rgb(255 255 255 / 3%), 0 0 8px #e0817991;
+}
+
+.form-sign input::placeholder {
+    color:#898989;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 12px;
+}
+
+.form-sign button {
+    width: 100%;
+    height: 45px;
+    color:#fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: "Noto Sans KR", sans-serif;
+    border:0;
+    background-color: #e08279;
+    border-radius: 35px;
+    padding:0px 15px;
+    margin-top:10px;
+    box-sizing: border-box;
+}
+
+.sns-button-group{
+    margin-top:30px;
+}
+
+.sns-button-group button {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border:0;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    margin:0px 20px;
+    padding:13px;
+    box-sizing:border-box;
+}
+
+.sns-button-group button:first-child,
+.sns-button-group button:last-child {
+    padding:10px;
+}
+
+.sns-button-group button img{
+    width: 100%;
+}
+
+.move-sign-up{
+    margin-top:60px;
+}
+
+.move-sign-up span {
+    font-size: 14px;
+}
+
+.move-sign-up a {
+    font-weight: bold;
+    font-size: 14px;
+    color:#e08279;
+    margin-left: 10px;
+}
