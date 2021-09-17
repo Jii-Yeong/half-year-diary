@@ -8,7 +8,6 @@ const FormWrapper = styled.article`
   align-items: center;
   width: 50%;
   height: 100%;
-  background-color: #fff;
 `;
 
 const FormLayout = ({ children }) => {

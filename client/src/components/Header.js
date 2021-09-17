@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import profile_thumbnail from "../assets/images/no_profile.png";
-import "../assets/css/header.css";
+import DefaultProfile from "./DefaultProfile";
 
 let GlobalHeader = styled.header`
   position: fixed;
@@ -40,14 +39,21 @@ let Gnb = styled.nav`
   background-color: #fff;
   box-sizing: border-box;
   z-index: 90;
+  transition: all 0.5s;
 `;
 
 const Header = ({ width }) => {
+  const [isOpenMenu, setMenuOpenState] = useState(false);
+
+  const handleClickOpenMenu = () => {
+    setMenuOpenState(!isOpenMenu);
+  };
+
   return (
     <>
       <GlobalHeader>
         <HeaderInner width={width}>
-          <div className="hamburger-button">
+          <div className="hamburger-button" onClick={handleClickOpenMenu}>
             <span></span>
             <span></span>
             <span></span>
@@ -60,16 +66,14 @@ const Header = ({ width }) => {
           </div>
 
           <ProfileThumbnail>
-            <Link
-              to="/signIn"
-              className="header-profile"
-              style={{ backgroundImage: `url(${profile_thumbnail})` }}
-            ></Link>
+            <Link to="/signIn" className="header-profile">
+              <DefaultProfile />
+            </Link>
           </ProfileThumbnail>
         </HeaderInner>
       </GlobalHeader>
 
-      <Gnb>
+      <Gnb id={`${isOpenMenu ? "open-gnb" : ""}`}>
         <ul className="gnb-list">
           <li>
             <Link to="/guide">사이트 이용 가이드</Link>

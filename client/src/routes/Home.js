@@ -1,11 +1,14 @@
 import React from "react";
+import Container from "../components/layout/Container";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 const Home = () => {
   return (
     <>
       <Header />
-      <h1>메인화면</h1>
+      <Container></Container>
+      <Footer />
     </>
   );
 };

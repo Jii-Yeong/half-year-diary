@@ -1,5 +1,4 @@
 .form-title {
-    width: 100%;
     text-align: center;
 }
 
@@ -52,6 +51,8 @@
     box-sizing: border-box;
 }
 
+/* Sign In CSS
+--------------------------------------- */
 .sns-button-group{
     margin-top:30px;
 }
@@ -90,4 +91,33 @@
     font-size: 14px;
     color:#e08279;
     margin-left: 10px;
+}
+
+/* Sign Up CSS
+--------------------------------------- */
+.sign-up .profile .profile-img{
+    width: 150px;
+    margin:0 auto;
+}
+
+.sign-up .profile .label-file{
+    display: inline-block;
+    padding:5px 15px;
+    font-size: 0.8em;
+    color:#fff;
+    cursor: pointer;
+    margin:10px 0px 40px 0px;
+    border-radius: 25px;
+    background-color: #e08279;
+}
+
+.sign-up .profile input[type="file"] {
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip:rect(0,0,0,0); 
+    border: 0;
 }

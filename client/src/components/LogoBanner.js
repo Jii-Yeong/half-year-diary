@@ -6,8 +6,8 @@ const Banner = styled.article`
   width: 50%;
   height: 100%;
   background-image: url(${logoBanner});
-  background-size: contain;
-  background-position: center 50px;
+  background-size: cover;
+  background-position: center 40px;
   background-repeat: no-repeat;
 `;
 

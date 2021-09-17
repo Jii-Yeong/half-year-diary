@@ -9,12 +9,13 @@ import "../assets/css/form.css";
 import github_icon from "../assets/images/github_icon.png";
 import naver_icon from "../assets/images/naver_icon.png";
 import kakao_icon from "../assets/images/kakao_icon.png";
+import Footer from "../components/Footer";
 
 const SignIn = () => {
   return (
     <>
       <Header width={"100vw"} />
-      <Container width={"100%"} flex={"flex"} padding={"0px 0px"}>
+      <Container width={"100%"} flex={"flex"} padding={"0px 0px"} bg={"#fff"}>
         <LogoBanner />
         <FormLayout>
           <div className="form-title">
@@ -46,6 +47,8 @@ const SignIn = () => {
             <span>아직 회원이 아니신가요?</span>
             <Link to="/signUp">회원가입 →</Link>
           </div>
+
+          <Footer color={"#d2d2d2"} width={"auto"} />
         </FormLayout>
       </Container>
     </>

@@ -8,12 +8,13 @@ let Main = styled.main`
   height: 100vh;
   padding: ${(props) => props.padding || "80px 20px"};
   margin: 0 auto;
+  background-color: ${(props) => props.bg || "#e08279"};
   box-sizing: border-box;
 `;
 
-const Container = ({ width, flex, padding, children }) => {
+const Container = ({ width, flex, padding, bg, children }) => {
   return (
-    <Main width={width} flex={flex} padding={padding}>
+    <Main width={width} flex={flex} padding={padding} bg={bg}>
       {children}
     </Main>
   );
