@@ -170,3 +170,17 @@ body, html {
 .default-profile-img{
     width: 100%;
 }
+
+/* Logo Banner Github CSS
+--------------------------------------- */
+.move-project {
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    display: block;
+    width: 80px;
+}
+
+.move-project img {
+    width: 100%;
+}
