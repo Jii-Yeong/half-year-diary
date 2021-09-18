@@ -1,27 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import DefaultProfile from "./user/DefaultProfile";
 
-const Header = () => {
+let GlobalHeader = styled.header`
+  position: fixed;
+  width: 100vw;
+  height: 50px;
+  background-color: #fff;
+  box-sizing: border-box;
+  z-index: 100;
+`;
+
+let HeaderInner = styled.div`
+  display: flex;
+  align-items: center;
+  width: ${(props) => props.width || "1480px"};
+  height: 100%;
+  margin: 0 auto;
+  padding: 0px 20px;
+  background-color: #fff;
+  box-sizing: border-box;
+`;
+
+let ProfileThumbnail = styled.div`
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+`;
+
+let Gnb = styled.nav`
+  position: absolute;
+  top: 0px;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  padding: 0px 20px;
+  background-color: #fff;
+  box-sizing: border-box;
+  z-index: 90;
+  transition: all 0.5s;
+`;
+
+// TODO : header width값을 페이지마다 다르게 적용하는법
+const Header = ({ width, user }) => {
+  const { profile } = user || {};
+  const [isOpenMenu, setMenuOpenState] = useState(false);
+
+  const handleClickOpenMenu = () => {
+    setMenuOpenState(!isOpenMenu);
+  };
+
   return (
-    <header>
-      <div class="header-inner">
-        <div className="hamburger-button">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+    <>
+      <GlobalHeader>
+        <HeaderInner width={width}>
+          <div className="hamburger-button" onClick={handleClickOpenMenu}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
 
-        <div className="logo">
-          <Link to="/">반년일기</Link>
-        </div>
+          <div className="header-home">
+            <Link to="/" className="home-link">
+              반년일기
+            </Link>
+          </div>
 
-        <div className="profile-thumbnail">
-          <Link to="/myPage/:id">마이페이지</Link>
-        </div>
-      </div>
+          <ProfileThumbnail>
+            <Link to="/Mypage" className="header-profile">
+              <DefaultProfile img={profile ? profile : "/no_profile.png"} />
+            </Link>
+          </ProfileThumbnail>
+        </HeaderInner>
+      </GlobalHeader>
 
-      <nav className="gnb">
-        <ul>
+      <Gnb id={`${isOpenMenu ? "open-gnb" : ""}`}>
+        <ul className="gnb-list">
           <li>
             <Link to="/guide">사이트 이용 가이드</Link>
           </li>
@@ -29,8 +86,8 @@ const Header = () => {
             <Link to="/diary/list">회고록</Link>
           </li>
         </ul>
-      </nav>
-    </header>
+      </Gnb>
+    </>
   );
 };
 
