@@ -1,16 +1,13 @@
 import React from "react";
-import Header from "../components/Header";
 import Container from "../components/layout/Container";
 import FormLayout from "../components/layout/FormLayout";
 import LogoBanner from "../components/LogoBanner";
 import "../assets/css/form.css";
-import DefaultProfile from "../components/DefaultProfile";
 import Footer from "../components/Footer";
 
 const SignUp = () => {
   return (
     <>
-      <Header width={"100vw"} />
       <Container width={"100%"} flex={"flex"} padding={"0px 0px"} bg={"#fff"}>
         <LogoBanner />
 
@@ -21,7 +18,7 @@ const SignUp = () => {
             <form className="form-sign sign-up" method="post">
               <div className="profile">
                 <div className="profile-img">
-                  <DefaultProfile />
+                  <img src="/no_profile.png" alt="프로필 이미지" />
                 </div>
                 <label htmlFor="userProfile" className="label-file">
                   썸네일 선택

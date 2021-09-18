@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import DefaultProfile from "./DefaultProfile";
+import DefaultProfile from "./user/DefaultProfile";
 
 let GlobalHeader = styled.header`
   position: fixed;
@@ -27,6 +27,8 @@ let ProfileThumbnail = styled.div`
   margin-left: auto;
   width: 40px;
   height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
 `;
 
 let Gnb = styled.nav`
@@ -42,7 +44,9 @@ let Gnb = styled.nav`
   transition: all 0.5s;
 `;
 
-const Header = ({ width }) => {
+// TODO : header width값을 페이지마다 다르게 적용하는법
+const Header = ({ width, user }) => {
+  const { profile } = user || {};
   const [isOpenMenu, setMenuOpenState] = useState(false);
 
   const handleClickOpenMenu = () => {
@@ -66,8 +70,8 @@ const Header = ({ width }) => {
           </div>
 
           <ProfileThumbnail>
-            <Link to="/signIn" className="header-profile">
-              <DefaultProfile />
+            <Link to="/Mypage" className="header-profile">
+              <DefaultProfile img={profile ? profile : "/no_profile.png"} />
             </Link>
           </ProfileThumbnail>
         </HeaderInner>

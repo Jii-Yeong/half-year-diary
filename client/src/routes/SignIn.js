@@ -1,7 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import Container from "../components/layout/Container";
-import Header from "../components/Header";
 import LogoBanner from "../components/LogoBanner";
 import FormLayout from "../components/layout/FormLayout";
 
@@ -11,10 +10,27 @@ import naver_icon from "../assets/images/naver_icon.png";
 import kakao_icon from "../assets/images/kakao_icon.png";
 import Footer from "../components/Footer";
 
-const SignIn = () => {
+const SignIn = ({ authenticated, login, location }) => {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleClick = () => {
+    try {
+      login({ id, password });
+    } catch (e) {
+      alert("error");
+      setId("");
+      setPassword("");
+    }
+  };
+
+  const { from } = location.state || { from: { pathname: "/" } };
+  if (authenticated) {
+    return <Redirect to={from} />;
+  }
+
   return (
     <>
-      <Header width={"100vw"} />
       <Container width={"100%"} flex={"flex"} padding={"0px 0px"} bg={"#fff"}>
         <LogoBanner />
         <FormLayout>
@@ -24,9 +40,20 @@ const SignIn = () => {
           </div>
 
           <form className="form-sign sign-in" method="post">
-            <input type="email" name="userId" placeholder="아이디(이메일)" />
-            <input type="password" name="userPassword" placeholder="비밀번호" />
-            <button type="submit" className="submit-button">
+            <input
+              value={id}
+              onChange={({ target: { value } }) => setId(value)}
+              type="email"
+              placeholder="아이디(이메일)"
+            />
+            <input
+              value={password}
+              onChange={({ target: { value } }) => setPassword(value)}
+              type="password"
+              name="userPassword"
+              placeholder="비밀번호"
+            />
+            <button onClick={handleClick} className="submit-button">
               로그인
             </button>
           </form>
