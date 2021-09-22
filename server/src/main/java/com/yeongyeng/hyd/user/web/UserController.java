@@ -27,9 +27,15 @@ public class UserController {
         return "OK";
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/nickname")
     public String updateNickname(@RequestBody UserVO userVO) {
         userService.updateNickname(userVO);
+        return "OK";
+    }
+
+    @PutMapping("update/thumb")
+    public String updateUserThumb(@RequestBody UserVO userVO) {
+        userService.updateUserThumb(userVO);
         return "OK";
     }
 
