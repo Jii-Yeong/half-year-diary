@@ -29,6 +29,12 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void updateUserThumb(UserVO userVO) {
+        UserVO user = userRepository.findByEmail(userVO.getEmail());
+        user.setUserThumb(userVO.getUserThumb());
+        userRepository.save(user);
+    }
+
     public UserVO findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
