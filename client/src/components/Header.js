@@ -44,7 +44,6 @@ let Gnb = styled.nav`
   transition: all 0.5s;
 `;
 
-// TODO : header width값을 페이지마다 다르게 적용하는법
 const Header = ({ width, user }) => {
   const { profile } = user || {};
   const [isOpenMenu, setMenuOpenState] = useState(false);
@@ -70,7 +69,7 @@ const Header = ({ width, user }) => {
           </div>
 
           <ProfileThumbnail>
-            <Link to="/Mypage" className="header-profile">
+            <Link to="/signIn" className="header-profile">
               <DefaultProfile img={profile ? profile : "/no_profile.png"} />
             </Link>
           </ProfileThumbnail>
