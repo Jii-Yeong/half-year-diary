@@ -1,9 +1,16 @@
 import React from "react";
 
+import Container from "../../components/layout/Container";
+import PostContainer from "../../components/Post/PostContainer";
+
+import "../../assets/css/diary.css";
+
 const DiaryList = () => {
   return (
     <>
-      <h1>회고록 목록</h1>
+      <Container>
+        <PostContainer />
+      </Container>
     </>
   );
 };
