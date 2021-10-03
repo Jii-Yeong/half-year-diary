@@ -17,9 +17,7 @@ function App() {
       <Route
         render={(props) => (
           <>
-            {props.location.pathname !== "/signIn" ? (
-              <Header />
-            ) : (
+            {props.location.pathname !== "/signIn" ? null : (
               <Header width={"100vw"} />
             )}
             <Switch>
@@ -31,9 +29,7 @@ function App() {
       <Route
         render={(props) => (
           <>
-            {props.location.pathname !== "/signUp" ? (
-              <Header />
-            ) : (
+            {props.location.pathname !== "/signUp" ? null : (
               <Header width={"100vw"} />
             )}
             <Switch>

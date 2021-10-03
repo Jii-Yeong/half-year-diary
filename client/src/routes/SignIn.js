@@ -3,14 +3,15 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import Container from "../components/layout/Container";
-import LogoBanner from "../components/LogoBanner";
+import SideBanner from "../components/banner/SideBanner";
 import FormLayout from "../components/layout/FormLayout";
+import Footer from "../components/Footer";
+import DefaultButton from "../components/Button";
 
 import "../assets/css/form.css";
 import github_icon from "../assets/images/github_icon.png";
 import naver_icon from "../assets/images/naver_icon.png";
 import kakao_icon from "../assets/images/kakao_icon.png";
-import Footer from "../components/Footer";
 
 const SignIn = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -55,7 +56,7 @@ const SignIn = ({ history }) => {
   return (
     <>
       <Container width={"100%"} flex={"flex"} padding={"0px 0px"} bg={"#fff"}>
-        <LogoBanner />
+        <SideBanner />
         <FormLayout>
           <div className="form-title">
             <h1>로그인</h1>
@@ -77,7 +78,7 @@ const SignIn = ({ history }) => {
               name="password"
               placeholder="비밀번호"
             />
-            <button className="submit-button">로그인</button>
+            <DefaultButton className={"signIn-button"} text={"로그인"} />
           </form>
 
           <div className="sns-button-group">
