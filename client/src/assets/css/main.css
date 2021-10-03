@@ -171,7 +171,14 @@ body, html {
     width: 100%;
 }
 
-/* Logo Banner Github CSS
+/* Default Button CSS
+--------------------------------------- */
+.default-button{
+    font-weight: bold;
+    padding: 13px 15px;
+}
+
+/* Side Banner Github CSS
 --------------------------------------- */
 .move-project {
     position:absolute;
@@ -183,4 +190,15 @@ body, html {
 
 .move-project img {
     width: 100%;
+}
+
+/* Main Banner Button CSS
+--------------------------------------- */
+.move-guide-button{
+    position: absolute;
+    left:50%;
+    margin-left: -97px;
+    top: 56%;
+    font-size: 14px;
+    padding:8px 15px;
 }
