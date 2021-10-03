@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-let Main = styled.main`
+const Main = styled.main`
   display: ${(props) => props.flex || "block"};
   width: 100%;
   max-width: ${(props) => props.width || "1480px"};
