@@ -36,23 +36,14 @@
     font-size: 12px;
 }
 
-.form-sign button {
-    width: 100%;
-    height: 45px;
-    color:#fff;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: "Noto Sans KR", sans-serif;
-    border:0;
-    background-color: #e08279;
-    border-radius: 35px;
-    padding:0px 15px;
-    margin-top:10px;
-    box-sizing: border-box;
-}
+
 
 /* Sign In CSS
 --------------------------------------- */
+.signIn-button {
+    margin-top:10px;
+}
+
 .sns-button-group{
     margin-top:30px;
 }

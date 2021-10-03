@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+
+import "../assets/css/form.css";
+
 import Container from "../components/layout/Container";
 import FormLayout from "../components/layout/FormLayout";
-import LogoBanner from "../components/LogoBanner";
-import "../assets/css/form.css";
+import SideBanner from "../components/banner/SideBanner";
 import Footer from "../components/Footer";
+import DefaultButton from "../components/Button";
 
 const SignUp = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -12,6 +15,7 @@ const SignUp = ({ history }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [imgBase64, setImgBase64] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [thumbnail, setThumbnail] = useState(null);
 
   const handleChangeEmail = (event) => {
@@ -80,7 +84,7 @@ const SignUp = ({ history }) => {
   return (
     <>
       <Container width={"100%"} flex={"flex"} padding={"0px 0px"} bg={"#fff"}>
-        <LogoBanner />
+        <SideBanner />
 
         <FormLayout>
           <div className="form-title">
@@ -135,7 +139,7 @@ const SignUp = ({ history }) => {
                 placeholder="닉네임"
                 onChange={handleChangeNickname}
               />
-              <button className="submit-button">회원가입</button>
+              <DefaultButton className={"signUp-button"} text={"회원가입"} />
             </form>
           </div>
           <Footer color={"#d2d2d2"} width={"auto"} />

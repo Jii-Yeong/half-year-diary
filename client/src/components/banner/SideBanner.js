@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import logoBanner from "../assets/images/logo_banner.jpg";
-import githubImg from "../assets/images/github.png";
+import bannerImg from "../../assets/images/side_banner.jpg";
+import githubImg from "../../assets/images/github.png";
 
 const Banner = styled.article`
   position: relative;
   width: 50%;
   height: 100%;
-  background-image: url(${logoBanner});
+  background-image: url(${bannerImg});
   background-size: cover;
   background-position: center 40px;
   background-repeat: no-repeat;
 `;
 
-const LogoBanner = () => {
+const SideBanner = () => {
   return (
     <Banner>
       <a
@@ -27,4 +27,4 @@ const LogoBanner = () => {
   );
 };
 
-export default LogoBanner;
+export default SideBanner;
