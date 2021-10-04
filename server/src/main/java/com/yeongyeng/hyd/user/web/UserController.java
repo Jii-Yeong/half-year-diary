@@ -1,5 +1,9 @@
 package com.yeongyeng.hyd.user.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.yeongyeng.hyd.com.util.JwsService;
 import com.yeongyeng.hyd.user.service.UserService;
 import com.yeongyeng.hyd.user.vo.UserVO;
@@ -72,26 +76,39 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UserVO userVO, HttpServletResponse res) {
+    public JsonNode login(@RequestBody UserVO userVO, HttpServletResponse res) throws JsonProcessingException {
         LOGGER.info("userVO: " + userVO.getEmail());
+        ObjectMapper mapper = new ObjectMapper();
+        String tokenJson = null;
         if (userService.isLogin(userVO)) {
             String refreshToken = jwsService.getRefreshToken(key);
             String accessToken = jwsService.createJws(key, userVO);
             Cookie refreshCookie = new Cookie("refreshToken", refreshToken);
             res.addCookie(refreshCookie);
-            return accessToken;
+            tokenJson = "{\"accessToken\":\"" + accessToken + "\"}";
         } else {
-            return "로그인 실패";
+            tokenJson = "{\"message\":" + "\"LOGIN_FAIL\"}";
         }
+        JsonNode json = mapper.readTree(tokenJson);
+        return json;
     }
 
     @PostMapping("/silent-refresh")
-    public String silentRefresh(@RequestBody UserVO userVO, HttpServletResponse res) {
-        String refreshToken = jwsService.getRefreshToken(key);
-        String accessToken = jwsService.createJws(key, userVO);
-        Cookie refreshCookie = new Cookie("refreshToken", refreshToken);
-        res.addCookie(refreshCookie);
-        return accessToken;
+    public JsonNode silentRefresh(@RequestBody UserVO userVO, HttpServletResponse res) throws JsonProcessingException {
+        LOGGER.info("userVO: " + userVO.getEmail());
+        ObjectMapper mapper = new ObjectMapper();
+        String tokenJson = null;
+        if (userService.isLogin(userVO)) {
+            String refreshToken = jwsService.getRefreshToken(key);
+            String accessToken = jwsService.createJws(key, userVO);
+            Cookie refreshCookie = new Cookie("refreshToken", refreshToken);
+            res.addCookie(refreshCookie);
+            tokenJson = "{\"accessToken\":\"" + accessToken + "\"}";
+        } else {
+            tokenJson = "{\"message\":" + "\"LOGIN_FAIL\"}";
+        }
+        JsonNode json = mapper.readTree(tokenJson);
+        return json;
     }
 
     @PostMapping("/auth/info")
