@@ -1,19 +1,49 @@
-import axios from 'axios';
-import { useState } from 'react';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import Home from "./routes/Home";
+import SignIn from "./routes/SignIn";
+import SignUp from "./routes/SignUp";
+import Guide from "./routes/Guide";
+import DiaryList from "./routes/diary/DiaryList";
+import DiaryInsert from "./routes/diary/DiaryInsert";
+import DiaryDetail from "./routes/diary/DiaryDetail";
+import Header from "./components/Header";
 
 function App() {
-  const [ user, setUser ] = useState("");
-
-  axios.get('/api/user/test').then((response) => {
-    console.log(response);
-    setUser(response.data.nickname);
-  });
   return (
-    <div className="App">
-      <header className="App-header">
-        {user}
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Route
+        render={(props) => (
+          <>
+            {props.location.pathname !== "/signIn" ? null : (
+              <Header width={"100vw"} />
+            )}
+            <Switch>
+              <Route path="/signIn" render={(props) => <SignIn {...props} />} />
+            </Switch>
+          </>
+        )}
+      />
+      <Route
+        render={(props) => (
+          <>
+            {props.location.pathname !== "/signUp" ? null : (
+              <Header width={"100vw"} />
+            )}
+            <Switch>
+              <Route path="/signUp" component={SignUp} />
+            </Switch>
+          </>
+        )}
+      />
+      <Route path="/" component={Home} exact={true} />
+      <Route path="/guide" component={Guide} />
+      <Route path="/diary/list" component={DiaryList} />
+      <Route path="/diary/Insert" component={DiaryInsert} />
+      <Route path="/diary/datail/:id" component={DiaryDetail} />
+    </BrowserRouter>
   );
 }
 
