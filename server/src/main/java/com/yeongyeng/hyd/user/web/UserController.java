@@ -75,7 +75,7 @@ public class UserController {
         return userService.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:8080", exposedHeaders = "Authorization")
+    @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "Authorization")
     @PostMapping("/login")
     public JsonNode login(@RequestBody UserVO userVO, HttpServletResponse res) throws JsonProcessingException {
         res.addHeader("Access-Control-Expose-Headers", "Access-Token, Uid");
@@ -112,7 +112,8 @@ public class UserController {
         JsonNode json = mapper.readTree(tokenJson);
         return json;
     }
-    @CrossOrigin(origins = "http://localhost:8080", exposedHeaders = "Authorization")
+
+    @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "Authorization")
     @PostMapping("/auth/info")
     public UserVO getAuthInfo(HttpServletRequest req, HttpServletResponse res) {
         res.addHeader("Access-Control-Expose-Headers", "Access-Token, Uid");
