@@ -29,28 +29,30 @@ const SignIn = ({ history }) => {
     event.preventDefault();
 
     let data = {
-      username: email,
+      email: email,
       password: password,
     };
 
-    axios
-      .post("/api/login", data)
-      .then((response) => {
-        const { accessToken } = response.data;
+    axios.post("/hyd/api/user/login", data).then((response) => {
+      const { accessToken } = response.data;
 
-        console.log(response);
+      console.log(response);
 
-        if (response.status === 200) {
-          history.push("/");
-        }
-
+      if (response.status === 200) {
         axios.defaults.headers.common[
           "Authorization"
-        ] = `Bearer ${accessToken};`;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        ] = `Bearer ${accessToken}`;
+        axios
+          .post("/hyd/api/user/auth/info")
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        history.push("/");
+      }
+    });
   };
 
   return (
@@ -68,7 +70,7 @@ const SignIn = ({ history }) => {
               value={email}
               onChange={handleChangeEmail}
               type="email"
-              name="username"
+              name="email"
               placeholder="아이디(이메일)"
             />
             <input
