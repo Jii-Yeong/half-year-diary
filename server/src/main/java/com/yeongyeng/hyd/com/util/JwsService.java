@@ -31,7 +31,7 @@ public class JwsService {
         String jws = Jwts.builder()
                 .setIssuer("refresh")
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1 * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + 600 * 1000))
                 .signWith(key)
                 .compact();
         LOGGER.debug("refresh: " + key.toString());
@@ -45,7 +45,7 @@ public class JwsService {
         claims.put("email", userVO.getEmail());
         claims.put("password", userVO.getPassword());
         String jws = Jwts.builder()
-                .setExpiration(new Date(System.currentTimeMillis() + 1 * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + 600 * 1000))
                 .setIssuedAt(new Date())
                 .setClaims(claims)
                 .signWith(key)
