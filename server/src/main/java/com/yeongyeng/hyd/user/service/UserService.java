@@ -48,12 +48,23 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void updateUserRefreshToken(UserVO userVO) {
+        UserVO user = userRepository.findByEmail(userVO.getEmail());
+        user.setRefreshToken(userVO.getRefreshToken());
+        LOGGER.info("refresh: " + userVO.getRefreshToken());
+        userRepository.save(user);
+    }
+
     public UserVO findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
     public UserVO findByNickname(String nickname) {
         return userRepository.findByNickname(nickname);
+    }
+
+    public boolean findByRefreshToken(String refreshToken) {
+        return userRepository.findByRefreshToken(refreshToken);
     }
 
     public List<UserVO> findAll() {

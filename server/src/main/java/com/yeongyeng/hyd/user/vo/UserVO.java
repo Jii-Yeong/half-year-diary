@@ -21,18 +21,19 @@ public class UserVO {
     private String userThumb;
     private Timestamp regTime;
     private Timestamp altTime;
+    private String refreshToken;
 
     public UserVO() {
     }
 
-
     @Builder
-    public UserVO(String email, String password, String nickname, String userThumb, Timestamp regTime, Timestamp altTime) {
+    public UserVO(String email, String password, String nickname, String userThumb, Timestamp regTime, Timestamp altTime, String refreshToken) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.userThumb = userThumb;
         this.regTime = regTime;
         this.altTime = altTime;
+        this.refreshToken = refreshToken;
     }
 }
