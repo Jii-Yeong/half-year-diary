@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/layout/Container";
 import Footer from "../components/Footer";
 import MainBanner from "../components/banner/MainBanner";
 import DefaultButton from "../components/Button";
 
+import { SilentRefresh } from "../components/user/Refresh";
+
 const Home = () => {
+  useEffect(() => {
+    SilentRefresh();
+  }, []);
+
   return (
     <>
       <Container>

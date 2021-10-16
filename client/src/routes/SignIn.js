@@ -13,6 +13,8 @@ import github_icon from "../assets/images/github_icon.png";
 import naver_icon from "../assets/images/naver_icon.png";
 import kakao_icon from "../assets/images/kakao_icon.png";
 
+import { LoginSucces } from "../components/user/Refresh";
+
 const SignIn = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +27,7 @@ const SignIn = ({ history }) => {
     setPassword(event.currentTarget.value);
   };
 
+  // 로그인
   const handleClickSubmit = (event) => {
     event.preventDefault();
 
@@ -34,14 +37,9 @@ const SignIn = ({ history }) => {
     };
 
     axios.post("/hyd/api/user/login", data).then((response) => {
-      const { accessToken } = response.data;
-
-      console.log(response);
+      LoginSucces(response, email, password);
 
       if (response.status === 200) {
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
         axios
           .post("/hyd/api/user/auth/info")
           .then((response) => {
@@ -50,6 +48,8 @@ const SignIn = ({ history }) => {
           .catch((error) => {
             console.log(error);
           });
+
+        // 홈으로
         history.push("/");
       }
     });
