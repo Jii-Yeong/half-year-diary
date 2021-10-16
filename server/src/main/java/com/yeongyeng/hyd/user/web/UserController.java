@@ -88,6 +88,9 @@ public class UserController {
             Cookie refreshCookie = new Cookie("refreshToken", refreshToken);
             res.addCookie(refreshCookie);
             tokenJson = "{\"accessToken\":\"" + accessToken + "\"}";
+            userVO.setRefreshToken(refreshToken);
+            LOGGER.info("getRefresh: " + userVO.getRefreshToken());
+            userService.updateUserRefreshToken(userVO);
         } else {
             tokenJson = "{\"message\":" + "\"LOGIN_FAIL\"}";
         }
@@ -95,19 +98,23 @@ public class UserController {
         return json;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "Authorization")
     @PostMapping("/silent-refresh")
-    public JsonNode silentRefresh(@RequestBody UserVO userVO, HttpServletResponse res) throws JsonProcessingException {
-        LOGGER.info("userVO: " + userVO.getEmail());
-        ObjectMapper mapper = new ObjectMapper();
+    public JsonNode silentRefresh(@RequestBody UserVO userVO, HttpServletRequest req) throws JsonProcessingException {
+        Cookie[] cookies = req.getCookies();
+        String getToken = null;
         String tokenJson = null;
-        if (userService.isLogin(userVO)) {
-            String refreshToken = jwsService.getRefreshToken(key);
+        ObjectMapper mapper = new ObjectMapper();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("refreshToken")) {
+                    getToken = cookie.getValue();
+                }
+            }
+        }
+        if (userService.findByRefreshToken(getToken)) {
             String accessToken = jwsService.createJws(key, userVO);
-            Cookie refreshCookie = new Cookie("refreshToken", refreshToken);
-            res.addCookie(refreshCookie);
             tokenJson = "{\"accessToken\":\"" + accessToken + "\"}";
-        } else {
-            tokenJson = "{\"message\":" + "\"LOGIN_FAIL\"}";
         }
         JsonNode json = mapper.readTree(tokenJson);
         return json;
