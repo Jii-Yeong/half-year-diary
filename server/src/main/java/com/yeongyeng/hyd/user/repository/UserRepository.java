@@ -10,5 +10,5 @@ public interface UserRepository extends JpaRepository<UserVO, Long> {
 
     UserVO findByNickname(String nickname);
     UserVO findByPassword(String password);
-    boolean findByRefreshToken(String refreshToken);
+    UserVO findByRefreshToken(String refreshToken);
 }

@@ -100,7 +100,7 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "Authorization")
     @PostMapping("/silent-refresh")
-    public JsonNode silentRefresh(@RequestBody UserVO userVO, HttpServletRequest req) throws JsonProcessingException {
+    public JsonNode silentRefresh(HttpServletRequest req) throws JsonProcessingException {
         Cookie[] cookies = req.getCookies();
         String getToken = null;
         String tokenJson = null;
@@ -112,7 +112,8 @@ public class UserController {
                 }
             }
         }
-        if (userService.findByRefreshToken(getToken)) {
+        UserVO userVO = userService.findByRefreshToken(getToken);
+        if (userVO != null) {
             String accessToken = jwsService.createJws(key, userVO);
             tokenJson = "{\"accessToken\":\"" + accessToken + "\"}";
         }
@@ -133,5 +134,14 @@ public class UserController {
         String email = (String) jws.getBody().get("email");
         UserVO userVO = userService.findByEmail(email);
         return userVO;
+    }
+
+    @PostMapping("/logout")
+    public String logout(@RequestBody UserVO userVO, HttpServletRequest req, HttpServletResponse res) {
+        Cookie nullCookie = new Cookie("refreshToken", null);
+        res.addCookie(nullCookie);
+
+        userService.setRefreshTokenToNull(userVO);
+        return "OK";
     }
 }

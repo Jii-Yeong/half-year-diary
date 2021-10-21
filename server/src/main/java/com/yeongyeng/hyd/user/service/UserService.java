@@ -63,10 +63,9 @@ public class UserService {
         return userRepository.findByNickname(nickname);
     }
 
-    public boolean findByRefreshToken(String refreshToken) {
+    public UserVO findByRefreshToken(String refreshToken) {
         return userRepository.findByRefreshToken(refreshToken);
     }
-
     public List<UserVO> findAll() {
         return userRepository.findAll();
     }
@@ -80,5 +79,10 @@ public class UserService {
             }
         }
         return false;
+    }
+
+    public void setRefreshTokenToNull(UserVO userVO) {
+        userVO.setRefreshToken(null);
+        userRepository.save(userVO);
     }
 }
