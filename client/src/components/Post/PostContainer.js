@@ -9,27 +9,50 @@ const PostContainer = () => {
     popular: [],
   });
 
-  const makeReq = async () => {
+  const [item, setItem] = useState(20);
+
+  const makeReq = async (item) => {
     try {
       // data는 요청하여 얻은 결과를 담는 변수명
       const { data } = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts",
-        console.log("게시물 요청 성공")
+        "https://jsonplaceholder.typicode.com/posts"
       );
-      return [data, null];
+      // 데이터 20개만 보여지게 설정
+      let resultData = data.slice(0, item);
+
+      return [resultData, null];
     } catch (e) {
       return [null, e];
     }
   };
 
+  // 무한 스크롤 함수
+  const handleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+
+    if (scrollTop + clientHeight === scrollHeight) {
+      setItem(item + 20);
+      getData(item);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
   // useCallback hook은 함수를 재사용하기 위해 사용
   const getData = useCallback(async () => {
-    const [popular, popularError] = await makeReq();
+    const [popular, popularError] = await makeReq(item);
     setDiary({
       popular,
       popularError,
     });
-  }, []);
+  }, [item]);
 
   useEffect(() => {
     getData();

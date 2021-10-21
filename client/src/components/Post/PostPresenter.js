@@ -8,7 +8,7 @@ const Diary = styled.article`
   width: 100%;
   height: 400px;
   border-radius: 25px;
-  box-shadow: rgb(212 92 81 / 40%) 0px 0px 7px 3px;
+  box-shadow: rgb(212 92 81 / 60%) 0px 0px 20px 5px;
   background-color: #fff;
   overflow: hidden;
   box-sizing: border-box;
