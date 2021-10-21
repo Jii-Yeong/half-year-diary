@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../components/layout/Container";
 import Logout from "../components/user/Logout";
 
+import { SilentRefresh } from "../components/user/Refresh";
+
 const MyPage = ({ user, logout }) => {
   const { id, password, nickname, profile } = user || {};
+
+  useEffect(() => {
+    SilentRefresh();
+  }, []);
+
   return (
     <>
       <Container>
