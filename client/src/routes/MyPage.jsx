@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Container from "../components/layout/Container";
-import Logout from "../components/user/Logout";
+// import Logout from "../components/user/Logout";
 
 import { SilentRefresh } from "../components/user/Refresh";
 
-const MyPage = ({ user, logout }) => {
-  const { id, password, nickname, profile } = user || {};
+const MyPage = ({ user }) => {
+  const { email, password, nickname, userThumb } = user[0] || {};
 
   useEffect(() => {
     SilentRefresh();
@@ -18,7 +18,7 @@ const MyPage = ({ user, logout }) => {
           <tbody>
             <tr>
               <th>이메일</th>
-              <td>{id}</td>
+              <td>{email}</td>
             </tr>
             <tr>
               <th>비밀번호</th>
@@ -31,12 +31,11 @@ const MyPage = ({ user, logout }) => {
             <tr>
               <th>프로필 이미지</th>
               <td>
-                <img src={`${profile}`} alt="프로필 이미지" />
+                <img src={`${userThumb}`} alt="프로필 이미지" />
               </td>
             </tr>
           </tbody>
         </table>
-        <Logout logout={logout} />
       </Container>
     </>
   );

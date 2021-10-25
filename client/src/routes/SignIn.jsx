@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import Container from "../components/layout/Container";
 import SideBanner from "../components/banner/SideBanner";
@@ -15,7 +15,7 @@ import kakao_icon from "../assets/images/kakao_icon.png";
 
 import { LoginSucces } from "../components/user/Refresh";
 
-const SignIn = ({ history }) => {
+const SignIn = ({ authenticated, login, location }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -38,22 +38,14 @@ const SignIn = ({ history }) => {
 
     axios.post("/hyd/api/user/login", data).then((response) => {
       LoginSucces(response, email, password);
+      let token = response.data;
 
-      if (response.status === 200) {
-        axios
-          .post("/hyd/api/user/auth/info")
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-        // 홈으로
-        history.push("/");
-      }
+      login({ token, email });
     });
   };
+
+  const { from } = location.state || { from: { pathname: "/" } };
+  if (authenticated) return <Redirect to={from} />;
 
   return (
     <>

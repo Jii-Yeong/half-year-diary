@@ -46,8 +46,10 @@ let Gnb = styled.nav`
 `;
 
 const Header = ({ width, user }) => {
-  const { profile } = user || {};
+  const { userThumb } = user[0] || {};
   const [isOpenMenu, setMenuOpenState] = useState(false);
+
+  console.log(user);
 
   const handleClickOpenMenu = () => {
     setMenuOpenState(!isOpenMenu);
@@ -70,9 +72,21 @@ const Header = ({ width, user }) => {
           </div>
 
           <ProfileThumbnail>
-            <Link to="/signIn" className="header-profile">
-              <DefaultProfile img={profile ? profile : "/no_profile.png"} />
-            </Link>
+            <>
+              {user ? (
+                <Link to="/myPage" className="header-profile">
+                  <DefaultProfile
+                    img={userThumb ? userThumb : "/no_profile.png"}
+                  />
+                </Link>
+              ) : (
+                <Link to="/signIn" className="header-profile">
+                  <DefaultProfile
+                    img={userThumb ? userThumb : "/no_profile.png"}
+                  />
+                </Link>
+              )}
+            </>
           </ProfileThumbnail>
         </HeaderInner>
       </GlobalHeader>
