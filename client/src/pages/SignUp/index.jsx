@@ -3,11 +3,11 @@ import axios from "axios";
 
 import "../assets/css/form.css";
 
-import Container from "../components/layout/Container";
-import FormLayout from "../components/layout/FormLayout";
-import SideBanner from "../components/banner/SideBanner";
-import Footer from "../components/Footer";
-import DefaultButton from "../components/Button";
+import Container from "../../components/atoms/Container";
+import FormLayout from "../../components/layout/FormLayout";
+import SideBanner from "../../components/banner/SideBanner";
+import Footer from "../../components/organisms/Footer";
+import DefaultButton from "../../components/atoms/Button";
 
 const SignUp = ({ history }) => {
   const [email, setEmail] = useState("");

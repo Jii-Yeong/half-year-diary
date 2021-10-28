@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import Container from "../components/layout/Container";
+import Container from "../../components/atoms/Container";
 // import Logout from "../components/user/Logout";
 
-import { SilentRefresh } from "../components/user/Refresh";
+import { SilentRefresh } from "../SignIn/Refresh";
 
 const MyPage = ({ user }) => {
   const { email, password, nickname, userThumb } = user[0] || {};
