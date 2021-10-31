@@ -38,9 +38,6 @@ const SignIn = ({ authenticated, login, location }) => {
 
     axios.post("/hyd/api/user/login", data).then((response) => {
       LoginSucces(response, email, password);
-      let token = response.data;
-
-      login({ token, email });
     });
   };
 

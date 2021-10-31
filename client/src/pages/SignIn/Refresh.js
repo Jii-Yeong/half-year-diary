@@ -27,5 +27,5 @@ export const LoginSucces = (response, email, password) => {
 
   setTimeout(() => {
     SilentRefresh(response, email, password);
-  }, 5000);
+  }, JWT_EXPIRY_TIME - 60000);
 };
