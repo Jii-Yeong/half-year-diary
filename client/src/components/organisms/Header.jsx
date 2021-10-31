@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import DefaultProfile from "./user/DefaultProfile";
+import DefaultProfile from "../atoms/DefaultProfile";
 
 let GlobalHeader = styled.header`
   position: fixed;
@@ -46,7 +46,7 @@ let Gnb = styled.nav`
 `;
 
 const Header = ({ width, user }) => {
-  const { userThumb } = user[0] || {};
+  // const { userThumb } = user[0] || {};
   const [isOpenMenu, setMenuOpenState] = useState(false);
 
   console.log(user);
@@ -76,13 +76,13 @@ const Header = ({ width, user }) => {
               {user ? (
                 <Link to="/myPage" className="header-profile">
                   <DefaultProfile
-                    img={userThumb ? userThumb : "/no_profile.png"}
+                  // img={userThumb ? userThumb : "/no_profile.png"}
                   />
                 </Link>
               ) : (
                 <Link to="/signIn" className="header-profile">
                   <DefaultProfile
-                    img={userThumb ? userThumb : "/no_profile.png"}
+                  // img={userThumb ? userThumb : "/no_profile.png"}
                   />
                 </Link>
               )}

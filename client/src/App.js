@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Home from "./routes/Home";
-import SignIn from "./routes/SignIn";
-import SignUp from "./routes/SignUp";
-import Guide from "./routes/Guide";
-import DiaryList from "./routes/diary/DiaryList";
-import DiaryInsert from "./routes/diary/DiaryInsert";
-import DiaryDetail from "./routes/diary/DiaryDetail";
-import Header from "./components/Header";
-import MyPage from "./routes/MyPage";
+import Home from "./pages/Home/index";
+import SignIn from "./pages/SignIn/index";
+import SignUp from "./pages/SignUp/index";
+import Guide from "./pages/Intro/index";
+import DiaryList from "./pages/DiaryList/index";
+import DiaryInsert from "./pages/DiaryInsert/index";
+import DiaryDetail from "./pages/DiaryDetail/index";
+import MyPage from "./pages/MyPage/index";
 
-import AuthRoute from "./routes/AuthRoute";
-import { getTokenToCookie } from "./routes/auth";
-import { SilentRefresh } from "./components/user/Refresh";
+import Header from "./components/organisms/Header";
+
+import AuthRoute from "./utils/AuthRoute";
+import { getTokenToCookie } from "./utils/auth";
+// import { SilentRefresh } from "./components/user/Refresh";
 
 import Cookies from "universal-cookie";
 

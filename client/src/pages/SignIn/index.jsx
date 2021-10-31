@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 
-import Container from "../../components/atoms/Container";
-import SideBanner from "../../components/banner/SideBanner";
+import Container from "../../components/layout/Container";
+import SideBanner from "../../components/organisms/SideBanner";
 import FormLayout from "../../components/layout/FormLayout";
 import Footer from "../../components/organisms/Footer";
 import DefaultButton from "../../components/atoms/Button";
 
-import "../assets/css/form.css";
-import github_icon from "../assets/images/github_icon.png";
-import naver_icon from "../assets/images/naver_icon.png";
-import kakao_icon from "../assets/images/kakao_icon.png";
+import "../../assets/css/form.css";
+import github_icon from "../../assets/images/github_icon.png";
+import naver_icon from "../../assets/images/naver_icon.png";
+import kakao_icon from "../../assets/images/kakao_icon.png";
 
 import { LoginSucces } from "./Refresh";
 

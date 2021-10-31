@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Container from "../../components/atoms/Container";
+import Container from "../../components/layout/Container";
 // import Logout from "../components/user/Logout";
 
 import { SilentRefresh } from "../SignIn/Refresh";

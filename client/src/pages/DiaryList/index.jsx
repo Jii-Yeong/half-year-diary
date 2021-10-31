@@ -1,7 +1,7 @@
 import React from "react";
 
 import Container from "../../components/layout/Container";
-import PostContainer from "../../components/Post/PostContainer";
+import PostContainer from "./PostContainer";
 
 import "../../assets/css/diary.css";
 

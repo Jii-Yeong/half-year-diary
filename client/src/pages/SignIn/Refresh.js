@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setRefreshTokenToCookie } from "../../routes/auth";
+import { setRefreshTokenToCookie } from "../../utils/auth";
 
 export const SilentRefresh = (_, email, password) => {
   let data = {

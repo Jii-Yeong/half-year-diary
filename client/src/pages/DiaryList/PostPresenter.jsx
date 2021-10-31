@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import DiaryListLayout from "../layout/DiaryListLayout";
-import DefaultProfile from "../user/DefaultProfile";
+import DiaryListLayout from "../../components/layout/DiaryListLayout";
+import DefaultProfile from "../../components/atoms/DefaultProfile";
 
 const Diary = styled.article`
   width: 100%;
