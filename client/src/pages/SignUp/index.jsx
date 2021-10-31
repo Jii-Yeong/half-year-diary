@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import "../assets/css/form.css";
+import "../../assets/css/form.css";
 
-import Container from "../../components/atoms/Container";
+import Container from "../../components/layout/Container";
 import FormLayout from "../../components/layout/FormLayout";
-import SideBanner from "../../components/banner/SideBanner";
+import SideBanner from "../../components/organisms/SideBanner";
 import Footer from "../../components/organisms/Footer";
 import DefaultButton from "../../components/atoms/Button";
 

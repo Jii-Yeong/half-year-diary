@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Container from "../components/layout/Container";
-import Footer from "../components/Footer";
-import MainBanner from "../components/banner/MainBanner";
-import DefaultButton from "../components/Button";
 
-import { SilentRefresh } from "../components/user/Refresh";
+import Container from "../../components/layout/Container";
+import Footer from "../../components/organisms/Footer";
+import MainBanner from "../../components/organisms/MainBanner";
+import DefaultButton from "../../components/atoms/Button";
+
+import { SilentRefresh } from "../SignIn/Refresh";
 
 const Home = () => {
   useEffect(() => {

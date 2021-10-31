@@ -1,15 +1,29 @@
-import React, { useEffect } from "react";
-import Container from "../../components/atoms/Container";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import Container from "../../components/layout/Container";
 // import Logout from "../components/user/Logout";
 
 import { SilentRefresh } from "../SignIn/Refresh";
 
-const MyPage = ({ user }) => {
-  const { email, password, nickname, userThumb } = user[0] || {};
+const MyPage = ({ authenticated }) => {
+  const [user, setUser] = useState(null);
+  const { email, nickname, userThumb } = user || {};
+
+  const getUserInfo = async () => {
+    try {
+      const response = await axios.post("/hyd/api/user/auth/info");
+
+      setUser(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     SilentRefresh();
-  }, []);
+    getUserInfo();
+  }, [authenticated]);
 
   return (
     <>
@@ -19,10 +33,6 @@ const MyPage = ({ user }) => {
             <tr>
               <th>이메일</th>
               <td>{email}</td>
-            </tr>
-            <tr>
-              <th>비밀번호</th>
-              <td>{password}</td>
             </tr>
             <tr>
               <th>닉네임</th>

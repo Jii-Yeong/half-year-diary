@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import DefaultProfile from "./user/DefaultProfile";
+import DefaultProfile from "../atoms/DefaultProfile";
 
 let GlobalHeader = styled.header`
   position: fixed;
@@ -45,11 +46,25 @@ let Gnb = styled.nav`
   transition: all 0.5s;
 `;
 
-const Header = ({ width, user }) => {
-  const { userThumb } = user[0] || {};
-  const [isOpenMenu, setMenuOpenState] = useState(false);
+const Header = ({ width, authenticated }) => {
+  const [user, setUser] = useState(null);
+  const { userThumb } = user || {};
 
-  console.log(user);
+  const getUserInfo = async () => {
+    try {
+      const response = await axios.post("/hyd/api/user/auth/info");
+
+      setUser(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, [authenticated]);
+
+  const [isOpenMenu, setMenuOpenState] = useState(false);
 
   const handleClickOpenMenu = () => {
     setMenuOpenState(!isOpenMenu);
@@ -73,7 +88,7 @@ const Header = ({ width, user }) => {
 
           <ProfileThumbnail>
             <>
-              {user ? (
+              {authenticated ? (
                 <Link to="/myPage" className="header-profile">
                   <DefaultProfile
                     img={userThumb ? userThumb : "/no_profile.png"}

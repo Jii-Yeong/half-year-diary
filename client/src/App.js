@@ -1,50 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Home from "./routes/Home";
-import SignIn from "./routes/SignIn";
-import SignUp from "./routes/SignUp";
-import Guide from "./routes/Guide";
-import DiaryList from "./routes/diary/DiaryList";
-import DiaryInsert from "./routes/diary/DiaryInsert";
-import DiaryDetail from "./routes/diary/DiaryDetail";
-import Header from "./components/Header";
-import MyPage from "./routes/MyPage";
+import Home from "./pages/Home/index";
+import SignIn from "./pages/SignIn/index";
+import SignUp from "./pages/SignUp/index";
+import Guide from "./pages/Intro/index";
+import DiaryList from "./pages/DiaryList/index";
+import DiaryInsert from "./pages/DiaryInsert/index";
+import DiaryDetail from "./pages/DiaryDetail/index";
+import MyPage from "./pages/MyPage/index";
 
-import AuthRoute from "./routes/AuthRoute";
-import { getTokenToCookie } from "./routes/auth";
-import { SilentRefresh } from "./components/user/Refresh";
+import Header from "./components/organisms/Header";
+
+import AuthRoute from "./utils/AuthRoute";
 
 import Cookies from "universal-cookie";
 
 function App() {
+  const [token, setToken] = useState(null);
+
   const cookies = new Cookies();
   const getCookise = cookies.get("refresh_token");
 
-  const [user, setUser] = useState(null);
-
-  const authenticated = user != null;
-
-  // useEffect(() => {
-  //   SilentRefresh();
-  // }, [user]);
-
-  const login = ({ token, email }) => {
-    setUser(getTokenToCookie({ token, email }));
-  };
-
-  if (getCookise) {
-    login();
-  }
-
-  // if (!getCookise) return;
-
-  console.log(authenticated, user);
-  // console.log(SilentRefresh);
+  useEffect(() => {
+    setToken(getCookise);
+  }, [getCookise]);
 
   return (
     <BrowserRouter>
-      <Header user={user} />
+      <Header authenticated={token} />
       <Route
         render={(props) => (
           <>
@@ -54,13 +38,7 @@ function App() {
             <Switch>
               <Route
                 path="/signIn"
-                render={(props) => (
-                  <SignIn
-                    authenticated={authenticated}
-                    login={login}
-                    {...props}
-                  />
-                )}
+                render={(props) => <SignIn authenticated={token} {...props} />}
               />
             </Switch>
           </>
@@ -82,9 +60,9 @@ function App() {
       <Route path="/guide" component={Guide} />
 
       <AuthRoute
-        authenticated={authenticated}
+        authenticated={token}
         path="/mypage"
-        render={(props) => <MyPage user={user} {...props} />}
+        render={(props) => <MyPage authenticated={token} {...props} />}
       />
 
       <Route path="/diary/list" component={DiaryList} />
